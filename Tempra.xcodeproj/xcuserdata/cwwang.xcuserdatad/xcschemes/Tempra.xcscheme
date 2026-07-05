@@ -17,7 +17,7 @@
                BlueprintIdentifier = "70C2EB3B1475EF4F00751AE8"
                BuildableName = "Tempra.app"
                BlueprintName = "Tempra"
-               ReferencedContainer = "container:BlindStopwatch.xcodeproj">
+               ReferencedContainer = "container:Tempra.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "70C2EB3B1475EF4F00751AE8"
             BuildableName = "Tempra.app"
             BlueprintName = "Tempra"
-            ReferencedContainer = "container:BlindStopwatch.xcodeproj">
+            ReferencedContainer = "container:Tempra.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -55,7 +55,7 @@
             BlueprintIdentifier = "70C2EB3B1475EF4F00751AE8"
             BuildableName = "Tempra.app"
             BlueprintName = "Tempra"
-            ReferencedContainer = "container:BlindStopwatch.xcodeproj">
+            ReferencedContainer = "container:Tempra.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,7 +74,7 @@
             BlueprintIdentifier = "70C2EB3B1475EF4F00751AE8"
             BuildableName = "Tempra.app"
             BlueprintName = "Tempra"
-            ReferencedContainer = "container:BlindStopwatch.xcodeproj">
+            ReferencedContainer = "container:Tempra.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
