@@ -15,7 +15,6 @@
 #import <GameKit/GameKit.h>
 #import "BFPaperButton.h"
 #import "MachTimer.h"
-#import "VolumeTrigger.h"
 
 @interface ViewController : UIViewController <GKGameCenterControllerDelegate, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate>
 
@@ -23,7 +22,6 @@
 
     int screenWidth,screenHeight;
     float safeBottomInset;//modern screens: home-indicator padding
-    VolumeTrigger *volumeTrigger;
     int trialSequence;
     int lastStage;
 

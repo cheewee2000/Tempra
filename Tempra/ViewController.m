@@ -3,7 +3,6 @@
 //#import <AVFoundation/AVFoundation.h>
 //#import <MediaPlayer/MediaPlayer.h>
 #define CGRectSetPos( r, x, y ) CGRectMake( x, y, r.size.width, r.size.height )
-//#import "RBVolumeButtons.h"
 
 //#include <assert.h>
 //#include <mach/mach.h>
@@ -190,16 +189,7 @@
     //currentLevel=22;
     
     //[self loadData:currentLevel];
-    
-#pragma mark - Button Stealer
-    volumeTrigger = [[VolumeTrigger alloc] initWithView:self.view];
-    __weak ViewController *weakSelf = self;
-    volumeTrigger.pressBlock = ^{
-        [weakSelf buttonPressed];
-    };
-    [volumeTrigger start];
 
-    
 #pragma mark - progressView
 
     //dot array for level progress
@@ -635,7 +625,7 @@
     introParagraph.font = [UIFont fontWithName:@"DIN Condensed" size:20];
     introParagraph.numberOfLines=14;
     introParagraph.textAlignment=NSTextAlignmentJustified;
-    introParagraph.text=@"For each trial, your goal is to get as close as possible to the displayed target time. Tap the screen or press the volume button to start the counter, then press stop when you think the right amount of time has elapsed. \n\nBreathe... relax, and focus on your internal sense of time.";
+    introParagraph.text=@"For each trial, your goal is to get as close as possible to the displayed target time. Tap the screen to start the counter, then tap again to stop when you think the right amount of time has elapsed. \n\nBreathe... relax, and focus on your internal sense of time.";
     introParagraph.textColor=[self getForegroundColor:0];
     [intro addSubview:introParagraph];
     
