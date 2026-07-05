@@ -21,6 +21,7 @@
 {
 
     int screenWidth,screenHeight;
+    float safeBottomInset;//modern screens: home-indicator padding
     int trialSequence;
     int lastStage;
 

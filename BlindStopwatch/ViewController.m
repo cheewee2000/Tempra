@@ -57,6 +57,11 @@
     else if(IS_IPHONE_5)vbuttonY=128;
     else if(IS_IPHONE_4)vbuttonY=95;
 
+    //modern screens: pad below the notch/Dynamic Island (safe.top is 0 on older devices)
+    UIEdgeInsets safe = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets;
+    vbuttonY += safe.top;
+    safeBottomInset = safe.bottom;//used to keep the bottom progress bar clear of the home indicator
+
     screenHeight=self.view.frame.size.height;
     screenWidth=self.view.frame.size.width;
 
@@ -633,7 +638,7 @@
     introParagraph.font = [UIFont fontWithName:@"DIN Condensed" size:20];
     introParagraph.numberOfLines=14;
     introParagraph.textAlignment=NSTextAlignmentJustified;
-    introParagraph.text=@"For each trial, your goal is to get as close as possible to the displayed target time. Tap the screen or press the volume button to start the counter, then press stop when you think the right amount of time has elapsed. \n\nBreathe... relax, and focus on your internal sense of time.\n\nThis app periodically collects anonymous statistics for us to study and potentially reveal how humans produce time internally.";
+    introParagraph.text=@"For each trial, your goal is to get as close as possible to the displayed target time. Tap the screen or press the volume button to start the counter, then press stop when you think the right amount of time has elapsed. \n\nBreathe... relax, and focus on your internal sense of time.";
     introParagraph.textColor=[self getForegroundColor:0];
     [intro addSubview:introParagraph];
     
@@ -1234,7 +1239,7 @@
                       initialSpringVelocity:1.0
                                     options:UIViewAnimationOptionCurveLinear
                                          animations:^{
-                                             heart.frame=CGRectMake(16+(screenWidth-16)/10.0*(i%10)+floor(i/10.0)*2, screenHeight-70-floor(i/10.0)*2,15,15);
+                                             heart.frame=CGRectMake(16+(screenWidth-16)/10.0*(i%10)+floor(i/10.0)*2, screenHeight-70-safeBottomInset-floor(i/10.0)*2,15,15);
                                              //heart.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
                                          }
                                          completion:^(BOOL finished){
@@ -1368,14 +1373,14 @@
                          animations:^{
                              if(progressView.frame.origin.y>=0)
                              {
-                                 if( (progressView.frame.origin.y<screenHeight-44 && location.y<previousLocation.y) || progressView.frame.origin.y<screenHeight*.125)
+                                 if( (progressView.frame.origin.y<screenHeight-44-safeBottomInset && location.y<previousLocation.y) || progressView.frame.origin.y<screenHeight*.125)
                                  {
                                     progressView.frame=CGRectMake(0, 0, screenWidth, progressView.frame.size.height);
                                      progressView.dotsContainer.frame=CGRectMake(0, 22, screenWidth, progressView.dotsContainer.frame.size.height);
                                      [self.view bringSubviewToFront:progressView];
                                  }
                                 else {
-                                    progressView.frame=CGRectMake(0, screenHeight-44, screenWidth, progressView.frame.size.height);
+                                    progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, screenWidth, progressView.frame.size.height);
                                     if([stageLabels count]>0){
                                         TextArrow *sLabel=[stageLabels objectAtIndex:[self getCurrentStage]];
                                         float y=sLabel.frame.origin.y;
@@ -1490,7 +1495,7 @@
                                 options:UIViewAnimationOptionCurveLinear
                              animations:^{
                                  //labelContainerBlur.alpha=1.0;
-                                 progressView.frame=CGRectMake(0, screenHeight-44, screenWidth, progressView.frame.size.height);
+                                 progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, screenWidth, progressView.frame.size.height);
                                  TextArrow *sLabel=[stageLabels objectAtIndex:[self getCurrentStage]];
                                  float y=sLabel.frame.origin.y;
                                  progressView.dotsContainer.frame=CGRectMake(0,-y+15, screenWidth, progressView.dotsContainer.frame.size.height);
@@ -1617,7 +1622,7 @@
                      }
                      completion:^(BOOL finished){
                          [introArrow slideIn:0.8];
-                         progressView.frame=CGRectMake(0, screenHeight-44, screenWidth, progressView.frame.size.height);
+                         progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, screenWidth, progressView.frame.size.height);
                          if([stageLabels count]>0){
                              TextArrow *sLabel=[stageLabels objectAtIndex:[self getCurrentStage]];
                              float y=sLabel.frame.origin.y;
@@ -2870,7 +2875,7 @@
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          //slide progressview down
-                         progressView.frame=CGRectMake(0, screenHeight-44, self.view.frame.size.width, progressView.frame.size.height);
+                         progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, self.view.frame.size.width, progressView.frame.size.height);
                          TextArrow *sLabel=[stageLabels objectAtIndex:[self getCurrentStage]];
                          float y=sLabel.frame.origin.y;
                          progressView.dotsContainer.frame=CGRectMake(0,-y+15, screenWidth, progressView.dotsContainer.frame.size.height);
