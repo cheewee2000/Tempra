@@ -1751,36 +1751,27 @@
 
 #pragma mark - GameCenter
 -(void)reportScore{
-    if(_leaderboardIdentifier){
-        //GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
-        GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:@"global"];
-        score.value = best*10.0;
-        
-        [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
-            if (error != nil) {
-                NSLog(@"%@", [error localizedDescription]);
-            }
-        }];
-        
-//        GKScore *xp = [[GKScore alloc] initWithLeaderboardIdentifier:@"experiencepoints"];
-//        xp.value = experiencePoints*100.0;
-//        
-//        [GKScore reportScores:@[xp] withCompletionHandler:^(NSError *error) {
-//            if (error != nil) {
-//                NSLog(@"%@", [error localizedDescription]);
-//            }
-//        }];
-        
-        GKScore *sp = [[GKScore alloc] initWithLeaderboardIdentifier:@"starBank"];
-        sp.value = starBank;
-        
-        [GKScore reportScores:@[sp] withCompletionHandler:^(NSError *error) {
-            if (error != nil) {
-                NSLog(@"%@", [error localizedDescription]);
-            }
-        }];
-        
-    }
+    if(!_gameCenterEnabled) return;
+
+    [GKLeaderboard submitScore:(NSInteger)(best*10.0)
+                       context:0
+                        player:[GKLocalPlayer localPlayer]
+                leaderboardIDs:@[@"global"]
+             completionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
+
+    [GKLeaderboard submitScore:starBank
+                       context:0
+                        player:[GKLocalPlayer localPlayer]
+                leaderboardIDs:@[@"starBank"]
+             completionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
 }
 
 //-(void)updateAchievements{
@@ -1810,24 +1801,19 @@
 
 
 -(void)showGlobalLeaderboard{
-    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
+    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] initWithLeaderboardID:@"global" playerScope:GKLeaderboardPlayerScopeGlobal timeScope:GKLeaderboardTimeScopeAllTime];
     gcViewController.gameCenterDelegate = self;
-    gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
-    gcViewController.leaderboardIdentifier = @"global";
     [self presentViewController:gcViewController animated:YES completion:nil];
 }
 
 -(void)showSBLeaderboard{
-    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
+    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] initWithLeaderboardID:@"starBank" playerScope:GKLeaderboardPlayerScopeGlobal timeScope:GKLeaderboardTimeScopeAllTime];
     gcViewController.gameCenterDelegate = self;
-    gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
-    gcViewController.leaderboardIdentifier = @"starBank";
     [self presentViewController:gcViewController animated:YES completion:nil];
 }
 -(void)showAchievements{
-    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
+    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] initWithState:GKGameCenterViewControllerStateAchievements];
     gcViewController.gameCenterDelegate = self;
-    gcViewController.viewState = GKGameCenterViewControllerStateAchievements;
     [self presentViewController:gcViewController animated:YES completion:nil];
 }
 -(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
@@ -3224,30 +3210,13 @@
 
 -(void)authenticateLocalPlayer{
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-    
+
     localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
         if (viewController != nil) {
             [self presentViewController:viewController animated:YES completion:nil];
         }
         else{
-            if ([GKLocalPlayer localPlayer].authenticated) {
-                _gameCenterEnabled = YES;
-                
-                // Get the default leaderboard identifier.
-                [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
-                    
-                    if (error != nil) {
-                        NSLog(@"%@", [error localizedDescription]);
-                    }
-                    else{
-                        _leaderboardIdentifier = leaderboardIdentifier;
-                    }
-                }];
-            }
-            
-            else{
-                _gameCenterEnabled = NO;
-            }
+            self->_gameCenterEnabled = [GKLocalPlayer localPlayer].isAuthenticated;
         }
     };
 }
