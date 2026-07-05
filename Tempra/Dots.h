@@ -1,6 +1,6 @@
 //
 //  UIView+Dots.h
-//  BlindStopwatch
+//  Tempra
 //
 //  Created by Che-Wei Wang on 9/8/14.
 //

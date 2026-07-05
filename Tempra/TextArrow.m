@@ -1,6 +1,6 @@
 //
 //  UIView+TextArrow.m
-//  BlindStopwatch
+//  Tempra
 //
 //  Created by Che-Wei Wang on 9/10/14.
 //

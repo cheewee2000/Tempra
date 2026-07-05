@@ -50,18 +50,18 @@
 		440E489B19E064CE00EA7D0C /* LevelProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelProgressView.h; sourceTree = "<group>"; };
 		440E489C19E064CE00EA7D0C /* LevelProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelProgressView.m; sourceTree = "<group>"; };
 		443CA72C19C0B171003BACD8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		4470939119ED940100F6D53C /* BlindStopwatch-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BlindStopwatch-Info.plist"; sourceTree = "<group>"; };
+		4470939119ED940100F6D53C /* Tempra-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tempra-Info.plist"; sourceTree = "<group>"; };
 		4470939319EDA48100F6D53C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4470939519EDC41E00F6D53C /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		4480EB8419F3689D007236F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		44866B4719B78B500084652A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		448E789E19B936C000BF902A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
-		448E78A219B936C000BF902A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = BlindStopwatch/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		448E78A419B936C000BF902A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "BlindStopwatch/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
-		448E78A519B936C000BF902A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "BlindStopwatch/Default@2x.png"; sourceTree = SOURCE_ROOT; };
-		448E78A619B936C000BF902A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = BlindStopwatch/Default.png; sourceTree = SOURCE_ROOT; };
-		448E78AF19B936C100BF902A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = BlindStopwatch/AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		448E78B019B936C100BF902A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BlindStopwatch/main.m; sourceTree = SOURCE_ROOT; };
+		448E78A219B936C000BF902A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Tempra/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		448E78A419B936C000BF902A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Tempra/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		448E78A519B936C000BF902A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Tempra/Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		448E78A619B936C000BF902A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Tempra/Default.png; sourceTree = SOURCE_ROOT; };
+		448E78AF19B936C100BF902A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Tempra/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		448E78B019B936C100BF902A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Tempra/main.m; sourceTree = SOURCE_ROOT; };
 		44AA100019C4AA0100000000 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		44C2C9F819C9E330005ACEB7 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		44C2C9F919C9E330005ACEB7 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
@@ -69,14 +69,14 @@
 		44C2E02D19BE52D3009CFF88 /* Dots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dots.m; sourceTree = "<group>"; };
 		44E751C81A119E3600E5C14D /* MachTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachTimer.h; sourceTree = "<group>"; };
 		44E751C91A119E3600E5C14D /* MachTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachTimer.m; sourceTree = "<group>"; };
-		44F77D3A19ECCC3B005DB2C8 /* BlindStopwatch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlindStopwatch-Prefix.pch"; sourceTree = "<group>"; };
+		44F77D3A19ECCC3B005DB2C8 /* Tempra-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tempra-Prefix.pch"; sourceTree = "<group>"; };
 		44F972C819BE9E310094FCF4 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		44F972C919BE9E310094FCF4 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		44FC471A1A0053D000DC7A52 /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperButton.h; sourceTree = "<group>"; };
 		44FC471B1A0053D000DC7A52 /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPaperButton.m; sourceTree = "<group>"; };
 		44FC471E1A0054AA00DC7A52 /* UIColor+BFPaperColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BFPaperColors.h"; sourceTree = "<group>"; };
 		44FC471F1A0054AA00DC7A52 /* UIColor+BFPaperColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BFPaperColors.m"; sourceTree = "<group>"; };
-		70C2EB3C1475EF4F00751AE8 /* BlindStopwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlindStopwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		70C2EB3C1475EF4F00751AE8 /* Tempra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C2EB401475EF4F00751AE8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		70C2EB421475EF4F00751AE8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		70C2EB441475EF4F00751AE8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,7 +126,7 @@
 				448E789D19B936C000BF902A /* InfoPlist.strings */,
 			);
 			name = en.lproj;
-			path = BlindStopwatch/en.lproj;
+			path = Tempra/en.lproj;
 			sourceTree = SOURCE_ROOT;
 		};
 		44FC471D1A0054AA00DC7A52 /* UIColor+BFPaperColors */ = {
@@ -151,7 +151,7 @@
 		70C2EB311475EF4F00751AE8 = {
 			isa = PBXGroup;
 			children = (
-				70C2EB461475EF4F00751AE8 /* BlindStopwatch */,
+				70C2EB461475EF4F00751AE8 /* Tempra */,
 				70C2EB3F1475EF4F00751AE8 /* Frameworks */,
 				70C2EB3D1475EF4F00751AE8 /* Products */,
 			);
@@ -160,7 +160,7 @@
 		70C2EB3D1475EF4F00751AE8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				70C2EB3C1475EF4F00751AE8 /* BlindStopwatch.app */,
+				70C2EB3C1475EF4F00751AE8 /* Tempra.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,7 +180,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		70C2EB461475EF4F00751AE8 /* BlindStopwatch */ = {
+		70C2EB461475EF4F00751AE8 /* Tempra */ = {
 			isa = PBXGroup;
 			children = (
 				44FC47211A00563000DC7A52 /* BFPaperButton */,
@@ -202,16 +202,16 @@
 				448E78A219B936C000BF902A /* AppDelegate.m */,
 				44AA100219C4AA0100000002 /* VolumeTrigger.h */,
 				44AA100319C4AA0100000003 /* VolumeTrigger.m */,
-				4470939119ED940100F6D53C /* BlindStopwatch-Info.plist */,
+				4470939119ED940100F6D53C /* Tempra-Info.plist */,
 				44AA100019C4AA0100000000 /* PrivacyInfo.xcprivacy */,
-				44F77D3A19ECCC3B005DB2C8 /* BlindStopwatch-Prefix.pch */,
+				44F77D3A19ECCC3B005DB2C8 /* Tempra-Prefix.pch */,
 				4470939319EDA48100F6D53C /* Images.xcassets */,
 				448E789C19B936C000BF902A /* en.lproj */,
 				448E78A419B936C000BF902A /* Default-568h@2x.png */,
 				448E78A519B936C000BF902A /* Default@2x.png */,
 				448E78A619B936C000BF902A /* Default.png */,
 			);
-			path = BlindStopwatch;
+			path = Tempra;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -231,7 +231,7 @@
 			);
 			name = Tempra;
 			productName = VolumeSnap;
-			productReference = 70C2EB3C1475EF4F00751AE8 /* BlindStopwatch.app */;
+			productReference = 70C2EB3C1475EF4F00751AE8 /* Tempra.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -255,7 +255,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 70C2EB361475EF4F00751AE8 /* Build configuration list for PBXProject "BlindStopwatch" */;
+			buildConfigurationList = 70C2EB361475EF4F00751AE8 /* Build configuration list for PBXProject "Tempra" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -408,10 +408,11 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BlindStopwatch/BlindStopwatch-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/BlindStopwatch/BlindStopwatch-Info.plist";
+				GCC_PREFIX_HEADER = "Tempra/Tempra-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Tempra/Tempra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				PRODUCT_NAME = BlindStopwatch;
+				PRODUCT_NAME = Tempra;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwandt.BlindStopwatch;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -428,10 +429,11 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BlindStopwatch/BlindStopwatch-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/BlindStopwatch/BlindStopwatch-Info.plist";
+				GCC_PREFIX_HEADER = "Tempra/Tempra-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Tempra/Tempra-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				PRODUCT_NAME = BlindStopwatch;
+				PRODUCT_NAME = Tempra;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cwandt.BlindStopwatch;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -440,7 +442,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		70C2EB361475EF4F00751AE8 /* Build configuration list for PBXProject "BlindStopwatch" */ = {
+		70C2EB361475EF4F00751AE8 /* Build configuration list for PBXProject "Tempra" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				70C2EB581475EF4F00751AE8 /* Debug */,
