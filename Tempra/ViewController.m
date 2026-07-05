@@ -2120,7 +2120,7 @@
     float d=0;
     float inc=.07;
     int arrowN=0;
-    int margin=screenHeight-44-37;
+    int margin=screenHeight-44-37-safeBottomInset;
     int spacing=-1;
     
     for (int i=0; i<NUMLEVELARROWS; i++){
