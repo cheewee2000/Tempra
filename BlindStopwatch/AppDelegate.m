@@ -1,7 +1,6 @@
 
 
 #import "AppDelegate.h"
-#import "TestFlight.h"
 
 @implementation AppDelegate
 
@@ -10,40 +9,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-
-    //disable dimming and screen off
-/*
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    ContainerViewController *container = [[ContainerViewController alloc] init];
-    self.window.rootViewController = container;
-    */
-    
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
-    
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"configuration" ofType:@"plist"];
-    NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-
-    NSString *applicationId = configuration[@"Parse"][@"applicationId"];
-    NSString *clientKey = configuration[@"Parse"][@"clientKey"];
-    
-
-    [Parse setApplicationId:applicationId
-                  clientKey:clientKey];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    [PFUser enableAutomaticUser];
-    [[PFUser currentUser] incrementKey:@"RunCount"];
-    [[PFUser currentUser] saveInBackground];
-    
-    
-    NSString *testflightId = configuration[@"TestFlight"][@"id"];
-    [TestFlight takeOff:testflightId];
 
     return YES;
 }

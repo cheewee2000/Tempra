@@ -7,26 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MediaPlayer/MediaPlayer.h>
 #import "BEMSimpleLineGraphView.h"
 #import "Dots.h"
 #import "TextArrow.h"
-#import <Parse/Parse.h>
 #import "Level.h"
 #import "LevelProgressView.h"
 #import <GameKit/GameKit.h>
 #import "BFPaperButton.h"
 #import "MachTimer.h"
 
-@class RBVolumeButtons;
-
-@interface ViewController : UIViewController <GKGameCenterControllerDelegate, UIAlertViewDelegate , BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate>
+@interface ViewController : UIViewController <GKGameCenterControllerDelegate, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate>
 
 {
-    
-    PFUser *currentUser;
+
     int screenWidth,screenHeight;
-    RBVolumeButtons *_buttonStealer;
     int trialSequence;
     int lastStage;
 
@@ -164,7 +158,6 @@
 //void drawLine(CGContextRef context, CGPoint startPoint, CGPoint endPoint, CGColorRef color);
 //@property (weak, nonatomic) IBOutlet UILabel *screenLabel;
 //@property (assign, nonatomic) NSInteger indexNumber;
-@property (retain) RBVolumeButtons *buttonStealer;
 
 @property (strong, nonatomic) NSMutableArray *trialData;
 @property (strong, nonatomic) NSMutableArray *allTrialData;

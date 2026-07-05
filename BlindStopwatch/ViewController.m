@@ -5,8 +5,6 @@
 #define CGRectSetPos( r, x, y ) CGRectMake( x, y, r.size.width, r.size.height )
 //#import "RBVolumeButtons.h"
 
-#import <sys/utsname.h> // import it in your header or implementation file.
-
 //#include <assert.h>
 //#include <mach/mach.h>
 //#include <mach/mach_time.h>
@@ -36,7 +34,6 @@
 @implementation ViewController
 
 
-@synthesize buttonStealer = _buttonStealer;
 //@synthesize screenLabel,indexNumber;
 
 - (void)didReceiveMemoryWarning
@@ -1572,35 +1569,6 @@
     //save data into clean array
     [self.levelData  insertObject:myDictionary atIndex:currentLevel];
     [self saveLevelProgress];
-    
-    //save to parse
-    PFObject *pObject = [PFObject objectWithClassName:@"results"];
-    pObject[@"goal"] = [NSNumber numberWithFloat:(timerGoal)];
-    pObject[@"accuracy"] = [NSNumber numberWithFloat:(elapsed-timerGoal)];
-    pObject[@"date"]=[NSDate date];
-    pObject[@"date"]=localDateTime;
-    pObject[@"timezone"]=[NSString stringWithFormat:@"%@",[NSTimeZone localTimeZone].abbreviation];
-    pObject[@"touchX"]=[NSNumber numberWithFloat: touchX ];
-    pObject[@"touchY"]=[NSNumber numberWithFloat: touchY ];
-    pObject[@"touchLength"]=[NSNumber numberWithFloat:touchLength];
-    NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
-    pObject[@"build"]=build;
-
-    NSString*uuid;
-    //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if([defaults stringForKey:@"uuid"] == nil){
-        uuid=CFBridgingRelease(CFUUIDCreateString(NULL, CFUUIDCreate(NULL)));
-        [defaults setObject:uuid forKey:@"uuid"];
-    }
-    else uuid =[defaults stringForKey:@"uuid"];
-    pObject[@"uuid"]=uuid;
-    
-    
-    if(currentUser!=nil) pObject[@"user"]=currentUser;
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    if(currentInstallation!=nil)pObject[@"installation"]=currentInstallation;
-    
-    [pObject saveEventually];
 
     //update graph
     //self.myGraph.animationGraphEntranceTime = 0.8;
@@ -3172,70 +3140,6 @@
 
 
 #pragma mark - ViewController Delegate
--(void)logIn{
-    [PFUser enableAutomaticUser];
-
-    currentUser = [PFUser currentUser];
-    if (currentUser) {
-        // do stuff with the user
-        currentUser[@"best"]=[NSNumber numberWithFloat:best];
-        currentUser[@"deviceName"]=[self deviceName];
-
-        [currentUser saveEventually];
-        
-    } else {
-        // show the signup or login screen
-        [PFAnonymousUtils logInWithBlock:^(PFUser *user, NSError *error) {
-            if (error) {
-                NSLog(@"Anonymous login failed.");
-            } else {
-                NSLog(@"Anonymous user logged in.");
-                currentUser = [PFUser currentUser];
-
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                NSString*uuid;
-                if([defaults stringForKey:@"uuid"] == nil){
-                    uuid=CFBridgingRelease(CFUUIDCreateString(NULL, CFUUIDCreate(NULL)));
-                    [defaults setObject:uuid forKey:@"uuid"];
-                    [defaults synchronize];
-                }
-                else uuid =[defaults stringForKey:@"uuid"];
-                currentUser[@"uuid"]=uuid;
-                currentUser[@"deviceName"]=[self deviceName];
-
-                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-                currentUser[@"installation"]=currentInstallation;
-                //                currentInstallation[@"user"]=currentUser;
-                //                [currentInstallation saveEventually];
-                
-                [currentUser saveEventually];
-                
-            }
-        }];
-    }
-    
-    
-}
--(NSString*) deviceName
-{
-    struct utsname systemInfo;
-    uname(&systemInfo);
-    
-    return [NSString stringWithCString:systemInfo.machine
-                              encoding:NSUTF8StringEncoding];
-}
-
-
-
-
-- (void)viewDidUnload
-{
-    viewLoaded=false;
-   self.buttonStealer = nil;
-   [super viewDidUnload];
-   // Release any retained subviews of the main view.
-   // e.g. self.myOutlet = nil;
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -3291,10 +3195,9 @@
 
     
 //    if(trialSequence==0)[instructions updateText:@"START" animate:YES];
-    
-    [self logIn];
 
-    
+
+
    [super viewDidAppear:animated];
 }
 
