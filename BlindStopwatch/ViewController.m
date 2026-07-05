@@ -192,15 +192,12 @@
     //[self loadData:currentLevel];
     
 #pragma mark - Button Stealer
-//    id progressDelegate = self;
-//    self.buttonStealer = [[RBVolumeButtons alloc] init];
-//    self.buttonStealer.upBlock = ^{
-//        [progressDelegate buttonPressed];
-//    };
-//    self.buttonStealer.downBlock = ^{
-//        [progressDelegate buttonPressed];
-//    };
-//    [self.buttonStealer startStealingVolumeButtonEvents];
+    volumeTrigger = [[VolumeTrigger alloc] initWithView:self.view];
+    __weak ViewController *weakSelf = self;
+    volumeTrigger.pressBlock = ^{
+        [weakSelf buttonPressed];
+    };
+    [volumeTrigger start];
 
     
 #pragma mark - progressView

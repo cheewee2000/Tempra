@@ -34,6 +34,8 @@
 		70C2EB411475EF4F00751AE8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C2EB401475EF4F00751AE8 /* UIKit.framework */; };
 		70C2EB431475EF4F00751AE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C2EB421475EF4F00751AE8 /* Foundation.framework */; };
 		70C2EB451475EF4F00751AE8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70C2EB441475EF4F00751AE8 /* CoreGraphics.framework */; };
+		44AA100419C4AA0100000004 /* VolumeTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AA100319C4AA0100000003 /* VolumeTrigger.m */; };
+		44AA100619C4AA0100000006 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44AA100519C4AA0100000005 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,9 @@
 		70C2EB441475EF4F00751AE8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		70C2EB5D1475F03B00751AE8 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		70C2EB5F1475F07400751AE8 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		44AA100219C4AA0100000002 /* VolumeTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeTrigger.h; sourceTree = "<group>"; };
+		44AA100319C4AA0100000003 /* VolumeTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeTrigger.m; sourceTree = "<group>"; };
+		44AA100519C4AA0100000005 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4470939619EDC41E00F6D53C /* GameKit.framework in Frameworks */,
+				44AA100619C4AA0100000006 /* MediaPlayer.framework in Frameworks */,
 				443CA73219C0C013003BACD8 /* AudioToolbox.framework in Frameworks */,
 				443CA72D19C0B171003BACD8 /* AVFoundation.framework in Frameworks */,
 				44866B4819B78B500084652A /* QuartzCore.framework in Frameworks */,
@@ -194,6 +200,8 @@
 				448E78B019B936C100BF902A /* main.m */,
 				448E78AF19B936C100BF902A /* AppDelegate.h */,
 				448E78A219B936C000BF902A /* AppDelegate.m */,
+				44AA100219C4AA0100000002 /* VolumeTrigger.h */,
+				44AA100319C4AA0100000003 /* VolumeTrigger.m */,
 				4470939119ED940100F6D53C /* BlindStopwatch-Info.plist */,
 				44AA100019C4AA0100000000 /* PrivacyInfo.xcprivacy */,
 				44F77D3A19ECCC3B005DB2C8 /* BlindStopwatch-Prefix.pch */,
@@ -287,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44E751CA1A119E3600E5C14D /* MachTimer.m in Sources */,
+				44AA100419C4AA0100000004 /* VolumeTrigger.m in Sources */,
 				440E489D19E064CE00EA7D0C /* LevelProgressView.m in Sources */,
 				44C2C9FA19C9E330005ACEB7 /* Level.m in Sources */,
 				440CF80D1A0327FD000296ED /* BEMSimpleLineGraphView.m in Sources */,
