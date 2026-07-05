@@ -24,6 +24,7 @@
 		448E78B819B936C100BF902A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 448E78A519B936C000BF902A /* Default@2x.png */; };
 		448E78B919B936C100BF902A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 448E78A619B936C000BF902A /* Default.png */; };
 		448E78BD19B936C100BF902A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 448E78B019B936C100BF902A /* main.m */; };
+		44AA100119C4AA0100000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 44AA100019C4AA0100000000 /* PrivacyInfo.xcprivacy */; };
 		44C2C9FA19C9E330005ACEB7 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C2C9F919C9E330005ACEB7 /* Level.m */; };
 		44C2E02E19BE52D3009CFF88 /* Dots.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C2E02D19BE52D3009CFF88 /* Dots.m */; };
 		44E751CA1A119E3600E5C14D /* MachTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E751C91A119E3600E5C14D /* MachTimer.m */; };
@@ -59,6 +60,7 @@
 		448E78A619B936C000BF902A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = BlindStopwatch/Default.png; sourceTree = SOURCE_ROOT; };
 		448E78AF19B936C100BF902A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = BlindStopwatch/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		448E78B019B936C100BF902A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BlindStopwatch/main.m; sourceTree = SOURCE_ROOT; };
+		44AA100019C4AA0100000000 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		44C2C9F819C9E330005ACEB7 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		44C2C9F919C9E330005ACEB7 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		44C2E02C19BE52D3009CFF88 /* Dots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dots.h; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				448E78AF19B936C100BF902A /* AppDelegate.h */,
 				448E78A219B936C000BF902A /* AppDelegate.m */,
 				4470939119ED940100F6D53C /* BlindStopwatch-Info.plist */,
+				44AA100019C4AA0100000000 /* PrivacyInfo.xcprivacy */,
 				44F77D3A19ECCC3B005DB2C8 /* BlindStopwatch-Prefix.pch */,
 				4470939319EDA48100F6D53C /* Images.xcassets */,
 				448E789C19B936C000BF902A /* en.lproj */,
@@ -272,6 +275,7 @@
 				448E78B719B936C100BF902A /* Default-568h@2x.png in Resources */,
 				448E78B819B936C100BF902A /* Default@2x.png in Resources */,
 				448E78B319B936C100BF902A /* InfoPlist.strings in Resources */,
+				44AA100119C4AA0100000001 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
