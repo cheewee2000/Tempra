@@ -30,8 +30,6 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIFileSharingEnabled</key>
-	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>MainStoryboard</string>
 	<key>UIMainStoryboardFile</key>
