@@ -87,8 +87,10 @@ static void *VolumeTriggerContext = &VolumeTriggerContext;
     if(resetting) return;
     float newVolume=[change[NSKeyValueChangeNewKey] floatValue];
     if(fabsf(newVolume-RESTING_VOLUME)<0.001) return;//our own reset landing
-    if(self.pressBlock) self.pressBlock();
-    [self resetVolume];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(self.pressBlock) self.pressBlock();
+        [self resetVolume];
+    });
 }
 
 -(void)dealloc{
