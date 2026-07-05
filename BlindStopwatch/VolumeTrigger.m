@@ -67,6 +67,8 @@ static void *VolumeTriggerContext = &VolumeTriggerContext;
 }
 
 -(void)resetVolume{
+    //MPVolumeView's slider may not exist until the view is in a window; retry lazily
+    if(volumeSlider==nil) volumeSlider=[self findSliderIn:volumeView];
     if(volumeSlider==nil) return;//presses still fire except at min/max
     resetting=YES;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
