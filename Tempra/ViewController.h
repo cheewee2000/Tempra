@@ -22,6 +22,7 @@
 
     int screenWidth,screenHeight;
     float safeBottomInset;//modern screens: home-indicator padding
+    CGSize builtSize; UIEdgeInsets builtInsets;//window geometry the layout was built for (see windowMayHaveChanged)
     int trialSequence;
     int lastStage;
 

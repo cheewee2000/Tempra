@@ -95,6 +95,16 @@
 
 }
 
+//parked past the right edge of the window, which can be wider than this arrow (iPhone Duo cover screen)
+-(CGFloat)offRightX{
+    return MAX(saveFrame.size.width*1.1, self.window.bounds.size.width);
+}
+
+//below the bottom of the window; on a foldable the screen and the window can disagree, so take the larger
+-(CGFloat)offBottomY{
+    return MAX([[UIScreen mainScreen] bounds].size.height, self.window.bounds.size.height);
+}
+
 -(void)resetFrame{
     self.frame=saveFrame;
 }
@@ -104,23 +114,23 @@
 
 -(void)slideDown:(float) delay{
     
-    if(self.frame.origin.y<[[UIScreen mainScreen] bounds].size.height){
+    if(self.frame.origin.y<[self offBottomY]){
         [UIView animateWithDuration:SLIDESPEED*2
                               delay:delay
              usingSpringWithDamping:.8
               initialSpringVelocity:1.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             self.frame = CGRectMake(0,[[UIScreen mainScreen] bounds].size.height,self.frame.size.width,self.frame.size.height);
+                             self.frame = CGRectMake(0,[self offBottomY],self.frame.size.width,self.frame.size.height);
                          }
                          completion:^(BOOL finished){
                              //set arrow to below frame
-                             self.frame = CGRectMake(0,[[UIScreen mainScreen] bounds].size.height,saveFrame.size.width,saveFrame.size.height);
+                             self.frame = CGRectMake(0,[self offBottomY],saveFrame.size.width,saveFrame.size.height);
                              
                          }];
     }
     else{
-        self.frame = CGRectMake(0,[[UIScreen mainScreen] bounds].size.height,saveFrame.size.width,saveFrame.size.height);
+        self.frame = CGRectMake(0,[self offBottomY],saveFrame.size.width,saveFrame.size.height);
     }
 
     [self setNeedsDisplay];
@@ -128,7 +138,7 @@
 
 -(void)slideUp:(float) delay{
     
-    if(self.frame.origin.y>=[[UIScreen mainScreen] bounds].size.height){
+    if(self.frame.origin.y>=[self offBottomY]){
         [UIView animateWithDuration:SLIDESPEED
                               delay:delay
              usingSpringWithDamping:.8
@@ -152,7 +162,7 @@
 
 -(void)slideUpTo:(float)yPos delay:(float) delay{
     
-    if(self.frame.origin.y>=[[UIScreen mainScreen] bounds].size.height){
+    if(self.frame.origin.y>=[self offBottomY]){
         [UIView animateWithDuration:SLIDESPEED
                               delay:delay
              usingSpringWithDamping:.8
@@ -187,12 +197,12 @@
                      }
                      completion:^(BOOL finished){
                          //set arrow to right of frame
-                         self.frame = CGRectMake(saveFrame.size.width*1.1,saveFrame.origin.y,saveFrame.size.width,saveFrame.size.height);
+                         self.frame = CGRectMake([self offRightX],saveFrame.origin.y,saveFrame.size.width,saveFrame.size.height);
 
                      }];
     }
     else{
-        self.frame = CGRectMake(saveFrame.size.width*1.1,saveFrame.origin.y,saveFrame.size.width,saveFrame.size.height);
+        self.frame = CGRectMake([self offRightX],saveFrame.origin.y,saveFrame.size.width,saveFrame.size.height);
     }
     
     
@@ -206,7 +216,7 @@
 -(void)slideIn:(float) delay{
     
     //set arrow to right of frame
-    self.frame = CGRectMake(saveFrame.size.width*1.1,saveFrame.origin.y,saveFrame.size.width,saveFrame.size.height);
+    self.frame = CGRectMake([self offRightX],saveFrame.origin.y,saveFrame.size.width,saveFrame.size.height);
 
     [UIView animateWithDuration:SLIDESPEED
                            delay:delay
@@ -234,7 +244,7 @@
                      }
                      completion:^(BOOL finished){
                          self.instructionText.text=str;
-                         self.frame = CGRectMake(self.frame.size.width*1.1,self.frame.origin.y,self.frame.size.width,self.frame.size.height);
+                         self.frame = CGRectMake([self offRightX],self.frame.origin.y,self.frame.size.width,self.frame.size.height);
 
                          [UIView animateWithDuration:SLIDESPEED
                                                delay:0.1
@@ -272,7 +282,7 @@
                              self.color=c;
                              [self setNeedsDisplay];
 
-                             self.frame = CGRectMake(self.frame.size.width*1.25,self.frame.origin.y,self.frame.size.width,self.frame.size.height);
+                             self.frame = CGRectMake([self offRightX],self.frame.origin.y,self.frame.size.width,self.frame.size.height);
                              
                              [UIView animateWithDuration:SLIDESPEED
                                                    delay:0.1

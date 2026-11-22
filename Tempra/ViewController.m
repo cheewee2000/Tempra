@@ -49,20 +49,32 @@
     
     trialSequence=-1;
 
+    //lay out from the window, not the screen: on a foldable (iPhone Duo) the window changes size and safe area with the fold
+    if(builtSize.width==0){//first launch; after that -rebuild hands the settled geometry over
+        UIWindow *win = UIApplication.sharedApplication.windows.firstObject;
+        builtSize = win ? win.bounds.size : self.view.frame.size;
+        builtInsets = win.safeAreaInsets;//can still be a placeholder this early (Duo cover screen); windowMayHaveChanged corrects it
+    }
+    self.view.frame = (CGRect){CGPointZero, builtSize};
+    UIEdgeInsets safe = builtInsets;
+
+    screenHeight=self.view.frame.size.height;
+    //content width. The Duo cover screen has a camera/clock column down its right edge; backgrounds still run full width.
+    //ponytail: only a right inset is handled (content starts at x=0); offset self.view.bounds if a left inset ever shows up
+    screenWidth=self.view.frame.size.width-safe.right;
+
+    //the counter font scales with width, so wide windows (iPad, unfolded Duo) need the banner lower to fit the target time above it;
+    //the extra 20 keeps the precision label out of the rounded top corners
     int vbuttonY=137;//5s
-    if(IS_IPAD)vbuttonY=237;
-    else if(IS_IPHONE_6)vbuttonY=145;
+    if(screenWidth*.31>137)vbuttonY=screenWidth*.31+20;
+    if(IS_IPHONE_6)vbuttonY=145;
     else if(IS_IPHONE_6_PLUS)vbuttonY=155;
     else if(IS_IPHONE_5)vbuttonY=128;
     else if(IS_IPHONE_4)vbuttonY=95;
 
     //modern screens: pad below the notch/Dynamic Island (safe.top is 0 on older devices)
-    UIEdgeInsets safe = UIApplication.sharedApplication.windows.firstObject.safeAreaInsets;
     vbuttonY += safe.top;
     safeBottomInset = safe.bottom;//used to keep the bottom progress bar clear of the home indicator
-
-    screenHeight=self.view.frame.size.height;
-    screenWidth=self.view.frame.size.width;
 
     
     aTimer = [MachTimer timer];
@@ -70,7 +82,7 @@
 #pragma mark - instructions
 
     //instructions
-    instructions=[[TextArrow alloc ] initWithFrame:CGRectMake(screenWidth, vbuttonY, screenWidth-8, 44)];
+    instructions=[[TextArrow alloc ] initWithFrame:CGRectMake(self.view.frame.size.width, vbuttonY, screenWidth-8, 44)];
     [self.view addSubview:instructions];
     [self loadLevelProgress];
 
@@ -195,6 +207,8 @@
     //dot array for level progress
     progressView=[[LevelProgressView alloc] initWithFrame:CGRectMake(0, screenHeight, self.view.frame.size.width, self.view.frame.size.height*2.5)];
     progressView.clipsToBounds=YES;
+    //the panel is full width, its messages stay in the content width
+    for(UILabel *l in @[progressView.centerMessage, progressView.subMessage, progressView.lowerMessage]) l.frame=CGRectMake(0, l.frame.origin.y, screenWidth, l.frame.size.height);
     [self.view addSubview:progressView];
     progressView.backgroundColor=[self getForegroundColor:currentLevel];
     
@@ -597,7 +611,7 @@
     m=15;
     int w=screenWidth-m*2.0;
     //instructions
-    introArrow=[[TextArrow alloc ] initWithFrame:CGRectMake(screenWidth, vbuttonY, screenWidth-8, 44)];
+    introArrow=[[TextArrow alloc ] initWithFrame:CGRectMake(self.view.frame.size.width, vbuttonY, screenWidth-8, 44)];
     introArrow.instructionText.textColor=intro.backgroundColor;
     introArrow.rightLabel.textColor=intro.backgroundColor;
     [introArrow update:@"OK LET'S GO!" rightLabel:@"" color:[self getForegroundColor:0] animate:NO];
@@ -871,8 +885,8 @@
           initialSpringVelocity:1.0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         if(currentLevel==0)progressView.frame=CGRectMake(0, -screenHeight, screenWidth, progressView.frame.size.height);
-                         else progressView.frame=CGRectMake(0, -screenHeight*.5, screenWidth, progressView.frame.size.height);
+                         if(currentLevel==0)progressView.frame=CGRectMake(0, -screenHeight, progressView.frame.size.width, progressView.frame.size.height);
+                         else progressView.frame=CGRectMake(0, -screenHeight*.5, progressView.frame.size.width, progressView.frame.size.height);
                          progressView.dotsContainer.frame=CGRectMake(0, 22, screenWidth, progressView.dotsContainer.frame.size.height);
                      }
                     completion:^(BOOL finished){
@@ -894,7 +908,7 @@
                               initialSpringVelocity:1.0
                                             options:UIViewAnimationOptionCurveLinear
                                          animations:^{
-                                             progressView.frame=CGRectMake(0, 0, screenWidth, progressView.frame.size.height);
+                                             progressView.frame=CGRectMake(0, 0, progressView.frame.size.width, progressView.frame.size.height);
                                              progressView.dotsContainer.frame=CGRectMake(0, 22, screenWidth, progressView.dotsContainer.frame.size.height);
                                              
                                          }
@@ -1362,12 +1376,12 @@
                              {
                                  if( (progressView.frame.origin.y<screenHeight-44-safeBottomInset && location.y<previousLocation.y) || progressView.frame.origin.y<screenHeight*.125)
                                  {
-                                    progressView.frame=CGRectMake(0, 0, screenWidth, progressView.frame.size.height);
+                                    progressView.frame=CGRectMake(0, 0, progressView.frame.size.width, progressView.frame.size.height);
                                      progressView.dotsContainer.frame=CGRectMake(0, 22, screenWidth, progressView.dotsContainer.frame.size.height);
                                      [self.view bringSubviewToFront:progressView];
                                  }
                                 else {
-                                    progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, screenWidth, progressView.frame.size.height);
+                                    progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, progressView.frame.size.width, progressView.frame.size.height);
                                     if([stageLabels count]>0){
                                         TextArrow *sLabel=[stageLabels objectAtIndex:[self getCurrentStage]];
                                         float y=sLabel.frame.origin.y;
@@ -1382,12 +1396,12 @@
                              else{
                                  //constrain to bottom of graph
                                  if(progressView.frame.origin.y<-screenHeight){
-                                     progressView.frame=CGRectMake(0, -screenHeight, screenWidth, progressView.frame.size.height);
+                                     progressView.frame=CGRectMake(0, -screenHeight, progressView.frame.size.width, progressView.frame.size.height);
                                  }
                                  
                                  else if(progressView.frame.origin.y<0){
-                                     if(location.y<previousLocation.y)progressView.frame=CGRectMake(0, -screenHeight*.5, screenWidth, progressView.frame.size.height);
-                                     else if(location.y>previousLocation.y)progressView.frame=CGRectMake(0, 0, screenWidth, progressView.frame.size.height);
+                                     if(location.y<previousLocation.y)progressView.frame=CGRectMake(0, -screenHeight*.5, progressView.frame.size.width, progressView.frame.size.height);
+                                     else if(location.y>previousLocation.y)progressView.frame=CGRectMake(0, 0, progressView.frame.size.width, progressView.frame.size.height);
 
                                  }
                                  
@@ -1482,7 +1496,7 @@
                                 options:UIViewAnimationOptionCurveLinear
                              animations:^{
                                  //labelContainerBlur.alpha=1.0;
-                                 progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, screenWidth, progressView.frame.size.height);
+                                 progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, progressView.frame.size.width, progressView.frame.size.height);
                                  TextArrow *sLabel=[stageLabels objectAtIndex:[self getCurrentStage]];
                                  float y=sLabel.frame.origin.y;
                                  progressView.dotsContainer.frame=CGRectMake(0,-y+15, screenWidth, progressView.dotsContainer.frame.size.height);
@@ -1609,7 +1623,7 @@
                      }
                      completion:^(BOOL finished){
                          [introArrow slideIn:0.8];
-                         progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, screenWidth, progressView.frame.size.height);
+                         progressView.frame=CGRectMake(0, screenHeight-44-safeBottomInset, progressView.frame.size.width, progressView.frame.size.height);
                          if([stageLabels count]>0){
                              TextArrow *sLabel=[stageLabels objectAtIndex:[self getCurrentStage]];
                              float y=sLabel.frame.origin.y;
@@ -1625,7 +1639,7 @@
     
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if (UIInterfaceOrientationIsPortrait(orientation)) {
-        imageSize = [UIScreen mainScreen].bounds.size;
+        imageSize = self.view.bounds.size;//the window, not the screen (they differ on a foldable)
     } else {
         imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
     }
@@ -2355,7 +2369,7 @@
               initialSpringVelocity:1.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             progressView.frame=CGRectMake(0, 0, screenWidth, progressView.frame.size.height);
+                             progressView.frame=CGRectMake(0, 0, progressView.frame.size.width, progressView.frame.size.height);
                              progressView.dotsContainer.frame=CGRectMake(0, 22, screenWidth, progressView.dotsContainer.frame.size.height);
 
                          }
@@ -2396,7 +2410,7 @@
           initialSpringVelocity:1.0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         progressView.frame=CGRectMake(0, 0, screenWidth, progressView.frame.size.height);
+                         progressView.frame=CGRectMake(0, 0, progressView.frame.size.width, progressView.frame.size.height);
                          progressView.dotsContainer.frame=CGRectMake(0, 22, screenWidth, progressView.dotsContainer.frame.size.height);
                      }
                      completion:^(BOOL finished){
@@ -3180,6 +3194,38 @@
 }
 
 
+
+#pragma mark - fold/unfold
+
+//Every frame is computed once in viewDidLoad, so when the window changes (iPhone Duo fold/unfold, iPad window resize)
+//start over on a fresh controller. It picks the game back up from NSUserDefaults exactly like a relaunch;
+//a trial that was being timed during the fold is simply offered again.
+-(void)windowMayHaveChanged{
+    UIWindow *win=self.view.window;
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(rebuild) object:nil];
+    if(win.rootViewController!=self) return;
+    if(CGSizeEqualToSize(win.bounds.size, builtSize) && UIEdgeInsetsEqualToEdgeInsets(win.safeAreaInsets, builtInsets)) return;
+    [self performSelector:@selector(rebuild) withObject:nil afterDelay:.15];//let a fold animation / live resize settle first
+}
+
+-(void)rebuild{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];//stop this controller's timers and delayed steps
+    UIWindow *win=self.view.window;
+    ViewController *fresh=[self.storyboard instantiateInitialViewController];
+    fresh->builtSize=win.bounds.size;//read here, while they are settled: mid-swap the window reports placeholder insets
+    fresh->builtInsets=win.safeAreaInsets;
+    win.rootViewController=fresh;
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    [self windowMayHaveChanged];
+}
+
+- (void)viewSafeAreaInsetsDidChange{
+    [super viewSafeAreaInsetsDidChange];
+    [self windowMayHaveChanged];
+}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
